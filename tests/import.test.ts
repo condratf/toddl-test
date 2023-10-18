@@ -12,7 +12,7 @@ import {
   getSubBreedImage,
   getBreedData,
   getBreedListWithImages
-} from '~/utils/getDogsData'
+} from '~/api/getDogsData'
 
 describe('test app components', () => {
   test('LinkButton', async () => {

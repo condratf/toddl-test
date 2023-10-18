@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {useAsyncData} from "#app"
-import {getSubBreedImage} from "~/utils"
+import {getSubBreedImage} from "~/api"
 
 const route = useRoute()
 const subbreed = route?.params?.subbreed || ''

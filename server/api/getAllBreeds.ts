@@ -1,4 +1,4 @@
-import {getAllBreeds} from "~/utils";
+import {getAllBreeds} from "~/api";
 
 export default defineEventHandler(async () => {
   const {message, error} = await getAllBreeds()

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {getBreedImage} from "~/utils";
+import {getBreedImage} from "~/api";
 
 const {title, imageUrl} = defineProps({
   title: {type: String, required: true},

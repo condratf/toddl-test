@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {getBreedData} from "~/utils"
+import {getBreedData} from "~/api"
 
 const route = useRoute()
 const breed = route?.params?.breed || ''

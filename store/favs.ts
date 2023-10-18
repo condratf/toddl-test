@@ -1,7 +1,7 @@
 import {defineStore} from 'pinia'
 import {BreedName, SubBreedName} from "~/utils/types";
+import axios from "axios";
 
-const {setData} = require('nuxt-storage/local-storage');
 
 export const useFavsStore = defineStore({
   id: 'favs-store',
@@ -11,31 +11,39 @@ export const useFavsStore = defineStore({
   }),
   actions: {
     initFavBreedList(list: Array<BreedName>) {
-      this.favBreedList = list
+      if (!this.favBreedList.length) this.favBreedList = list
     },
     initFavSubBreedList(list: Array<[BreedName, SubBreedName]>) {
-      this.favSubBreedList = list
+      if (!this.favSubBreedList.length) this.favSubBreedList = list
     },
     addToFavBreedList(breed: BreedName) {
       this.favBreedList.push(breed)
-      setData('favBreedList', this.favBreedList)
+      axios
+        .post('/api/setStorageBreeds', {breeds: this.favBreedList})
+        .catch(e => console.error(e))
     },
     addToFavSubBreedList(subBreed: [BreedName, SubBreedName]) {
       this.favSubBreedList.push(subBreed)
-      setData('favBreedList', this.favSubBreedList)
+      axios
+        .post('/api/setStorageBreeds', {subBreeds: this.favSubBreedList})
+        .catch(e => console.error(e))
     },
     removeFromFavBreedList(breed: BreedName) {
       const ix = this.favBreedList.findIndex(b => b === breed)
       if (ix !== -1) {
         this.favBreedList.splice(ix, 1)
-        setData('favBreedList', this.favBreedList)
+        axios
+          .post('/api/setStorageBreeds', {breeds: this.favBreedList})
+          .catch(e => console.error(e))
       }
     },
     removeFromFavSubBreedList(subBreed: [BreedName, SubBreedName]) {
       const ix = this.favSubBreedList.findIndex(v => v.join('-') === subBreed.join('-'))
       if (ix !== -1) {
         this.favSubBreedList.splice(ix, 1)
-        setData('favBreedList', this.favSubBreedList)
+        axios
+          .post('/api/setStorageBreeds', {subBreeds: this.favSubBreedList})
+          .catch(e => console.error(e))
       }
     },
   },
