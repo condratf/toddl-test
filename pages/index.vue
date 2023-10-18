@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {getData} from 'nuxt-storage/local-storage';
+const {getData} = require('nuxt-storage/local-storage');
 import {useFavsStore} from "~/store/favs";
 
 const {data: {value: {list}, error}, pending} = await useFetch('/api/getAllBreeds')

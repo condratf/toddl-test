@@ -1,6 +1,7 @@
 import {defineStore} from 'pinia'
-import {setData} from 'nuxt-storage/local-storage';
 import {BreedName, SubBreedName} from "~/utils/types";
+
+const {setData} = require('nuxt-storage/local-storage');
 
 export const useFavsStore = defineStore({
   id: 'favs-store',
